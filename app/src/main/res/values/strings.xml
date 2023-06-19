@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">SharedList</string>
+
+    <string name="task_list">Lista de Atividades</string>
+    <string name="add_task">Adicionar Atividade</string>
+
+    <string name="name">Nome</string>
+    <string name="address">Endereço</string>
+    <string name="phone">Telefone</string>
+    <string name="email">Email</string>
+    <string name="save">Salvar</string>
+
+    <string name="task_info">Informações da Atividade</string>
+    <string name="remove_task">Remover atividade</string>
+    <string name="edit_task">Editar atividade</string>
+    <string name="refresh_task">Atualizar Lista de Atividades</string>
+    <string name="title_activity_create_account">CreateAccountActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="recuperar_senha">Recuperar Senha</string>
+    <string name="entrar">Entrar</string>
+
+</resources>
