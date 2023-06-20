@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "930704137234",
+    "project_id": "pdmsharedlist",
+    "storage_bucket": "pdmsharedlist.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:930704137234:android:d5c7b7680d3d5aea3c0ccb",
+        "android_client_info": {
+          "package_name": "br.edu.scl.ifsp.sharedlist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "930704137234-36c0lg8rojdkc905i2398ksejf3aakbe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3eQyYpzJDW6v0KHMtprkB0BCvIcepezc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "930704137234-36c0lg8rojdkc905i2398ksejf3aakbe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

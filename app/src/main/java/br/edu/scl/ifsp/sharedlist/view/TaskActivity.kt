@@ -7,6 +7,8 @@ import android.view.View
 import br.edu.scl.ifsp.sharedlist.R
 import br.edu.scl.ifsp.sharedlist.databinding.ActivityTaskBinding
 import br.edu.scl.ifsp.sharedlist.model.Task
+import com.google.firebase.auth.FirebaseAuth
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -30,28 +32,40 @@ class TaskActivity : BaseActivity() {
             val viewTask = intent.getBooleanExtra(EXTRA_VIEW_TASK, false)
             with(atb) {
                 with(_receivedTask) {
-                    nameEt.setText(name)
-                    addressEt.setText(address)
-                    phoneEt.setText(phone)
-                    emailEt.setText(email)
+                    titleEt.setText(title)
+                    descriptionEt.setText(description)
+                    dateOfConclusionEt.setText(dateOfConclusion)
+                    creatorEmailEt.setText(creatorEmail)
+                    dateOfCreationEt.setText(dateOfCreation)
 
                     // alterando visibilidade, se necessário
-                    nameEt.isEnabled = !viewTask
-                    addressEt.isEnabled = !viewTask
-                    phoneEt.isEnabled = !viewTask
-                    emailEt.isEnabled = !viewTask
+                    titleEt.isEnabled = false
+                    descriptionEt.isEnabled = !viewTask
+                    dateOfConclusionEt.isEnabled = !viewTask
                     saveBt.visibility = if (viewTask) View.GONE else View.VISIBLE
                 }
+            }
+        } ?: run {
+            val dateFormat = SimpleDateFormat("dd/M/yyyy", Locale("pt", "BR"))
+            val currentDate = dateFormat.format(Date())
+
+            val user = FirebaseAuth.getInstance().currentUser
+            val userEmail = user?.email
+
+            with(atb) {
+                creatorEmailEt.setText(userEmail)
+                dateOfCreationEt.setText(currentDate)
             }
         }
 
         atb.saveBt.setOnClickListener {
             val task = Task(
                 id = receivedTask?.id,
-                name = atb.nameEt.text.toString(),
-                address = atb.addressEt.text.toString(),
-                phone = atb.phoneEt.text.toString(),
-                email = atb.emailEt.text.toString()
+                title = atb.titleEt.text.toString(),
+                description = atb.descriptionEt.text.toString(),
+                dateOfConclusion = atb.dateOfConclusionEt.text.toString(),
+                creatorEmail = atb.creatorEmailEt.text.toString(),
+                dateOfCreation = atb.dateOfCreationEt.text.toString()
             )
 
             val resultIntent = Intent()

@@ -1,5 +1,11 @@
 package br.edu.scl.ifsp.sharedlist.model
 
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 
 class TaskDaoRtDbFb  : TaskDao {
@@ -13,13 +19,13 @@ class TaskDaoRtDbFb  : TaskDao {
 
     init {
         //CRUD for taskList node
-        taskDaoRtDbFb.addChildEventListener(object : ChildEventListener{
+        taskDaoRtDbFb.addChildEventListener(object : ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 val task: Task? = snapshot.getValue<Task>()
 
                 //checking task existence before adding
                 task?.let { _task ->
-                    if(!taskList.any{_task.name == it.name}) {
+                    if(!taskList.any{_task.title == it.title}) {
                         taskList.add(_task)
                     }
                 }
@@ -30,7 +36,7 @@ class TaskDaoRtDbFb  : TaskDao {
 
                 //checking task existence before editing it
                 task?.let { _task ->
-                    taskList[taskList.indexOfFirst { _task.name == it.name }] = _task
+                    taskList[taskList.indexOfFirst { _task.title == it.title }] = _task
                 }
             }
 
@@ -94,15 +100,15 @@ class TaskDaoRtDbFb  : TaskDao {
     }
 
     override fun deleteTask(task: Task): Int {
-        taskDaoRtDbFb.child(task.name).removeValue()
+        taskDaoRtDbFb.child(task.title).removeValue()
         return 1
     }
     // =| \ |=
 
-    //if the name's not on the list, it'll add it
-    //|-> if object has its name edited, a copy of it will be created with the new name
+    //if the title's not on the list, it'll add it
+    //|-> if object has its title edited, a copy of it will be created with the new title
     private fun createOrUpdateTask(task : Task) {
-        taskDaoRtDbFb.child(task.name).setValue(task)
+        taskDaoRtDbFb.child(task.title).setValue(task)
     }
 
 }

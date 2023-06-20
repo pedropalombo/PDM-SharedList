@@ -30,7 +30,7 @@ class TaskAdapter (
             tileTaskView = ttb.root
 
             // criando um holder e guardando referência para os TextViews
-            val ttvh = TileTaskViewHolder(ttb.nameTv, ttb.emailTv)
+            val ttvh = TileTaskViewHolder(ttb.titleTv, ttb.dateOfConclusionTv)
 
             // armazenando ViewHolder na célula
             tileTaskView.tag = ttvh
@@ -38,15 +38,15 @@ class TaskAdapter (
 
         // substituir os valores
         with(tileTaskView.tag as TileTaskViewHolder) {
-            nomeTv.text = task.name
-            emailTv.text = task.email
+            titleTv.text = task.title
+            dateOfConclusionTv.text = task.dateOfConclusion
         }
 
         return tileTaskView
     }
 
     private data class TileTaskViewHolder(
-        val nomeTv: TextView,
-        val emailTv: TextView
+        val titleTv: TextView,
+        val dateOfConclusionTv: TextView
     )
 }

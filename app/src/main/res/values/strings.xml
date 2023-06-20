@@ -4,10 +4,11 @@
     <string name="task_list">Lista de Atividades</string>
     <string name="add_task">Adicionar Atividade</string>
 
-    <string name="name">Nome</string>
-    <string name="address">Endereço</string>
-    <string name="phone">Telefone</string>
-    <string name="email">Email</string>
+    <string name="title">Título</string>
+    <string name="description">Descrição</string>
+    <string name="dateCreation">Criado em</string>
+    <string name="dateConclusion">Data Estimada</string>
+    <string name="creatorEmail">Email do Criador</string>
     <string name="save">Salvar</string>
 
     <string name="task_info">Informações da Atividade</string>

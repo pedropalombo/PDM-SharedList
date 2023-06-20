@@ -6,16 +6,16 @@
     android:padding="10dp">
 
     <TextView
-        android:id="@+id/nameTv"
+        android:id="@+id/titleTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/name"
+        android:text="@string/title"
         android:textSize="25sp" />
 
     <TextView
-        android:id="@+id/emailTv"
+        android:id="@+id/dateOfConclusionTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/email" />
+        android:text="@string/dateConclusion" />
 
 </LinearLayout>

@@ -13,8 +13,8 @@ class TaskRvAdapter (
 
     inner class TaskViewHolder(tileTaskBinding: TileTaskBinding) :
         RecyclerView.ViewHolder(tileTaskBinding.root), View.OnCreateContextMenuListener {
-        val nameTv: TextView = tileTaskBinding.nameTv
-        val emailTv: TextView = tileTaskBinding.emailTv
+        val titleTv: TextView = tileTaskBinding.titleTv
+        val dateOfConclusionTv: TextView = tileTaskBinding.dateOfConclusionTv
         var taskPosition = -1 // Para saber qual célula foi clicada
         init {
             tileTaskBinding.root.setOnCreateContextMenuListener(this)
@@ -61,8 +61,8 @@ class TaskRvAdapter (
         val task = taskList[position]
 
         // Altera os valores da célula
-        holder.nameTv.text = task.name
-        holder.emailTv.text = task.email
+        holder.titleTv.text = task.title
+        holder.dateOfConclusionTv.text = task.creatorEmail
         holder.taskPosition = position
         holder.itemView.setOnClickListener {
             onTaskClickListener.onTileTaskClick(position)

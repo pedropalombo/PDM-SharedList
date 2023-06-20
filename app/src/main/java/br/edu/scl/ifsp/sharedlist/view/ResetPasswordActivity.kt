@@ -19,10 +19,10 @@ class ResetPasswordActivity : BaseActivity() {
         arpb.sendEmailBt.setOnClickListener {
             val email = arpb.recoveryPasswordEmailEt.text.toString() //getting input
 
-            //sending reset password based on email input
+            //sending reset password based on creatorEmail input
             FirebaseAuth.getInstance().sendPasswordResetEmail(email).addOnCompleteListener { resultado ->
 
-                //if email exists & request worked
+                //if creatorEmail exists & request worked
                 if(resultado.isSuccessful) {
                     //shows success msg
                     Toast.makeText(
@@ -38,7 +38,7 @@ class ResetPasswordActivity : BaseActivity() {
                     //shows failure msg and does nothing
                     Toast.makeText(
                         this@ResetPasswordActivity,
-                        "Falha no envio do email de recuperação.",
+                        "Falha no envio do creatorEmail de recuperação.",
                         Toast.LENGTH_SHORT
                     ).show()
                 }

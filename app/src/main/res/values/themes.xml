@@ -19,8 +19,8 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.ContatosPdm.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.SharedList.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="Theme.ContatosPdm.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.SharedList.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

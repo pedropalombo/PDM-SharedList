@@ -7,49 +7,63 @@
     android:padding="10dp"
     tools:context=".view.TaskActivity">
 
+    <!-- usuário que criou, data de criação, título, descrição e data prevista de cumprimento -->
     <EditText
-        android:id="@+id/nameEt"
+        android:id="@+id/titleEt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="@string/name"
+        android:hint="@string/title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/addressEt"
+        android:id="@+id/descriptionEt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPostalAddress"
-        android:hint="@string/address"
+        android:hint="@string/description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameEt" />
+        app:layout_constraintTop_toBottomOf="@+id/titleEt" />
 
     <EditText
-        android:id="@+id/phoneEt"
+        android:id="@+id/dateOfConclusionEt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="phone"
-        android:hint="@string/phone"
+        android:inputType="date"
+        android:hint="@string/dateConclusion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addressEt" />
+        app:layout_constraintTop_toBottomOf="@+id/descriptionEt" />
 
     <EditText
-        android:id="@+id/emailEt"
+        android:id="@+id/creatorEmailEt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:hint="@string/email"
+        android:hint="@string/creatorEmail"
+        android:enabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phoneEt" />
+        app:layout_constraintTop_toBottomOf="@+id/dateOfConclusionEt" />
+
+    <EditText
+        android:id="@+id/dateOfCreationEt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date"
+        android:hint="@string/dateCreation"
+        android:enabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/creatorEmailEt" />
 
     <Button
         android:id="@+id/saveBt"
@@ -58,5 +72,5 @@
         android:text="@string/save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailEt" />
+        app:layout_constraintTop_toBottomOf="@+id/dateOfCreationEt" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,10 +13,10 @@ class TaskDaoSqlite (context: Context) : TaskDao {
         private const val TASK_DATABASE_FILE = "tasks"
         private const val TASK_TABLE = "task"
         private const val ID_COLUMN = "id"
-        private const val NAME_COLUMN = "name"
-        private const val ADDRESS_COLUMN = "address"
-        private const val PHONE_COLUMN = "phone"
-        private const val EMAIL_COLUMN = "email"
+        private const val NAME_COLUMN = "title"
+        private const val ADDRESS_COLUMN = "description"
+        private const val PHONE_COLUMN = "dateOfConclusion"
+        private const val EMAIL_COLUMN = "creatorEmail"
 
         private const val CREATE_TASK_TABLE_STATEMENT =
             "CREATE TABLE IF NOT EXISTS $TASK_TABLE (" +
@@ -94,18 +94,18 @@ class TaskDaoSqlite (context: Context) : TaskDao {
         )
 
     private fun Task.toContentValues() = with(ContentValues()) {
-        put(NAME_COLUMN, name)
-        put(ADDRESS_COLUMN, address)
-        put(PHONE_COLUMN, phone)
-        put(EMAIL_COLUMN, email)
+        put(NAME_COLUMN, title)
+        put(ADDRESS_COLUMN, description)
+        put(PHONE_COLUMN, dateOfConclusion)
+        put(EMAIL_COLUMN, creatorEmail)
         this
     }
 
     private fun Cursor.rowToContact() = Task(
         id = getInt(getColumnIndexOrThrow(ID_COLUMN)),
-        name = getString(getColumnIndexOrThrow(NAME_COLUMN)),
-        address = getString(getColumnIndexOrThrow(ADDRESS_COLUMN)),
-        phone = getString(getColumnIndexOrThrow(PHONE_COLUMN)),
-        email = getString(getColumnIndexOrThrow(EMAIL_COLUMN)),
+        title = getString(getColumnIndexOrThrow(NAME_COLUMN)),
+        description = getString(getColumnIndexOrThrow(ADDRESS_COLUMN)),
+        dateOfConclusion = getString(getColumnIndexOrThrow(PHONE_COLUMN)),
+        creatorEmail = getString(getColumnIndexOrThrow(EMAIL_COLUMN)),
     )
 }
