@@ -1,19 +1,23 @@
 package br.edu.scl.ifsp.sharedlist.adapter
 
+import android.content.Context
 import android.view.*
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import br.edu.scl.ifsp.sharedlist.R
 import br.edu.scl.ifsp.sharedlist.databinding.TileTaskBinding
 import br.edu.scl.ifsp.sharedlist.model.Task
 
-class TaskRvAdapter (
+class TaskRecyclerViewAdapter (
     private val taskList: MutableList<Task>,
-    private val onTaskClickListener: OnTaskClickListener
-) : RecyclerView.Adapter<TaskRvAdapter.TaskViewHolder>() {
+    private val onTaskClickListener: OnTaskClickListener,
+    private val context : Context
+) : RecyclerView.Adapter<TaskRecyclerViewAdapter.TaskViewHolder>() {
 
     inner class TaskViewHolder(tileTaskBinding: TileTaskBinding) :
         RecyclerView.ViewHolder(tileTaskBinding.root), View.OnCreateContextMenuListener {
         val titleTv: TextView = tileTaskBinding.titleTv
+        val statusTv: TextView = tileTaskBinding.statusTv
         val dateOfConclusionTv: TextView = tileTaskBinding.dateOfConclusionTv
         var taskPosition = -1 // Para saber qual célula foi clicada
         init {
@@ -34,6 +38,12 @@ class TaskRvAdapter (
             menu?.add(Menu.NONE, 1, 1, "Remover")?.setOnMenuItemClickListener {
                 if (taskPosition != -1) {
                     onTaskClickListener.onRemoveMenuItemClick(taskPosition)
+                }
+                true
+            }
+            menu?.add(Menu.NONE, 1, 1, if (taskList[taskPosition].status) "Desfazer" else "Concluir")?.setOnMenuItemClickListener {
+                if (taskPosition != -1) {
+                    onTaskClickListener.onStatusMenuItemClick(taskPosition)
                 }
                 true
             }
@@ -62,7 +72,9 @@ class TaskRvAdapter (
 
         // Altera os valores da célula
         holder.titleTv.text = task.title
-        holder.dateOfConclusionTv.text = task.creatorEmail
+        holder.statusTv.text = if(task.status) context.getString(R.string.statusTrue) else context.getString(R.string.statusFalse)
+
+        holder.dateOfConclusionTv.text = task.dateOfConclusion
         holder.taskPosition = position
         holder.itemView.setOnClickListener {
             onTaskClickListener.onTileTaskClick(position)

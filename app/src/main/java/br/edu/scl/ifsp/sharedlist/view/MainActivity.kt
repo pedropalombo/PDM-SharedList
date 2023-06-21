@@ -11,7 +11,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.edu.scl.ifsp.sharedlist.R
 import br.edu.scl.ifsp.sharedlist.adapter.OnTaskClickListener
-import br.edu.scl.ifsp.sharedlist.adapter.TaskRvAdapter
+import br.edu.scl.ifsp.sharedlist.adapter.TaskRecyclerViewAdapter
 import br.edu.scl.ifsp.sharedlist.controller.TaskController
 import br.edu.scl.ifsp.sharedlist.databinding.ActivityMainBinding
 
@@ -24,8 +24,8 @@ class MainActivity : BaseActivity(), OnTaskClickListener {
     private val taskList: MutableList<br.edu.scl.ifsp.sharedlist.model.Task> = mutableListOf()
 
     // Adapter
-    private val taskAdapter: TaskRvAdapter by lazy {
-        TaskRvAdapter(taskList, this)
+    private val taskAdapter: TaskRecyclerViewAdapter by lazy {
+        TaskRecyclerViewAdapter(taskList, this, this)
     }
 
     private lateinit var tarl: ActivityResultLauncher<Intent>
@@ -104,7 +104,7 @@ class MainActivity : BaseActivity(), OnTaskClickListener {
     }
 
     // Funções que serão chamados sempre que uma célula for clicada no RecyclerView.
-    // A associação entre célula e função será feita no TaskRvAdapter.
+    // A associação entre célula e função será feita no TaskRecyclerViewAdapter.
     override fun onTileTaskClick(position: Int) {
         val task = taskList[position]
         val taskIntent = Intent(this@MainActivity, TaskActivity::class.java)
@@ -115,16 +115,40 @@ class MainActivity : BaseActivity(), OnTaskClickListener {
 
     override fun onEditMenuItemClick(position: Int) {
         val task = taskList[position]
-        val taskIntent = Intent(this, TaskActivity::class.java)
-        taskIntent.putExtra(EXTRA_TASK, task)
-        tarl.launch(taskIntent)
+        if(task.status) {
+            Toast.makeText(this, "Não é possível editar pois a atividade já foi concluida!", Toast.LENGTH_SHORT).show()
+        } else {
+            val taskIntent = Intent(this, TaskActivity::class.java)
+            taskIntent.putExtra(EXTRA_TASK, task)
+            tarl.launch(taskIntent)
+        }
     }
 
     override fun onRemoveMenuItemClick(position: Int) {
         val task = taskList[position]
-        taskList.removeAt(position)
-        taskController.removeTask(task)
+        if(task.status) {
+            Toast.makeText(this, "Não é possível remover pois a atividade já foi concluida!", Toast.LENGTH_SHORT).show()
+        } else {
+            taskList.removeAt(position)
+            taskController.removeTask(task)
+            taskAdapter.notifyDataSetChanged()
+            Toast.makeText(this, "Atividade removida!", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun onStatusMenuItemClick(position: Int) {
+        val task = taskList[position]
+
+        task.status = !task.status
+
+        taskController.editTask(task)
+
+        if(task.status) {
+            Toast.makeText(this, "Atividade concluida!", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "Atividade desfeita.", Toast.LENGTH_SHORT).show()
+        }
+
         taskAdapter.notifyDataSetChanged()
-        Toast.makeText(this, "Atividade removida!", Toast.LENGTH_SHORT).show()
     }
 }

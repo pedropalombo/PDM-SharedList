@@ -1,5 +1,7 @@
 package br.edu.scl.ifsp.sharedlist.view
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -28,6 +30,8 @@ class TaskActivity : BaseActivity() {
         } else {
             intent.getParcelableExtra(EXTRA_TASK)
         }
+
+        //if task exists | editing
         receivedTask?.let { _receivedTask ->
             val viewTask = intent.getBooleanExtra(EXTRA_VIEW_TASK, false)
             with(atb) {
@@ -37,6 +41,7 @@ class TaskActivity : BaseActivity() {
                     dateOfConclusionEt.setText(dateOfConclusion)
                     creatorEmailEt.setText(creatorEmail)
                     dateOfCreationEt.setText(dateOfCreation)
+                    statusEt.setText(if(_receivedTask.status) this@TaskActivity.getString(R.string.statusTrue) else this@TaskActivity.getString(R.string.statusFalse))
 
                     // alterando visibilidade, se necessário
                     titleEt.isEnabled = false
@@ -46,6 +51,7 @@ class TaskActivity : BaseActivity() {
                 }
             }
         } ?: run {
+            //if task doesn't exist | creating
             val dateFormat = SimpleDateFormat("dd/M/yyyy", Locale("pt", "BR"))
             val currentDate = dateFormat.format(Date())
 
@@ -75,8 +81,4 @@ class TaskActivity : BaseActivity() {
         }
     }
 
-    private fun generateId(): Int {
-        val random = Random(System.currentTimeMillis())
-        return random.nextInt()
-    }
 }

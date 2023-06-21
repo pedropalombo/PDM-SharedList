@@ -11,6 +11,9 @@
     <string name="creatorEmail">Email do Criador</string>
     <string name="save">Salvar</string>
 
+    <string name="statusFalse">Não Concluida</string>
+    <string name="statusTrue">Concluida</string>
+
     <string name="task_info">Informações da Atividade</string>
     <string name="remove_task">Remover atividade</string>
     <string name="edit_task">Editar atividade</string>

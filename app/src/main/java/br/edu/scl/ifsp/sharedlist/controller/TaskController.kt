@@ -35,6 +35,6 @@ class TaskController (private val mainActivity: MainActivity) {
     fun removeTask(task: Task) {
         Thread {
             taskDaoImpl.deleteTask(task)
-        }
+        }.start()
     }
 }

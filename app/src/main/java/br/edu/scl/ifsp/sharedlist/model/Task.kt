@@ -15,4 +15,5 @@ data class Task(
     @NonNull var dateOfConclusion: String = "",
     @NonNull var creatorEmail: String = "",
     @NonNull var dateOfCreation: String = "",
+    @NonNull var status: Boolean = false
 ): Parcelable
